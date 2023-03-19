@@ -18,4 +18,6 @@ com.chl.pojo.Tuyenxe_=javax.annotation.Generated,javax.persistence.metamodel.Sta
 com.chl.pojo.Users=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.chl.pojo.Users_=javax.annotation.Generated,javax.persistence.metamodel.StaticMetamodel
 com.chl.repository.impl.ChuyenxeRepositoryImpl=org.springframework.stereotype.Component
+com.chl.repository.impl.TuyenxeRepositoryImpl=org.springframework.stereotype.Component
 com.chl.service.impl.ChuyenxeServiceImpl=org.springframework.stereotype.Component
+com.chl.service.impl.TuyenxeServiceImpl=org.springframework.stereotype.Component

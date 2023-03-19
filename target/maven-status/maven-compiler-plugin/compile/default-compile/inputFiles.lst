@@ -10,7 +10,11 @@ C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\ChuyenxeService.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Khoanhaxe.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\impl\ChuyenxeServiceImpl.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Users.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\impl\TuyenxeServiceImpl.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\configs\DispatcherServletInitializer.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\repository\ChuyenxeReposity.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\repository\TuyenxeRepository.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\TuyenxeService.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Tuyenxe.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\repository\impl\TuyenxeRepositoryImpl.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Danhgia.java

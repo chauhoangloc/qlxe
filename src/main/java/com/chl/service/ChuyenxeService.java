@@ -6,11 +6,12 @@ package com.chl.service;
 
 import com.chl.pojo.Chuyenxe;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author NC
  */
 public interface ChuyenxeService {
-    List<Chuyenxe> getChuyenXes();
+   List<Chuyenxe> getChuyenXes(Map<String , String > params);
 }
