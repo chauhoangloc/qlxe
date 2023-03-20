@@ -71,10 +71,11 @@ public class Nhaxe implements Serializable {
     @JoinColumn(name = "iduser", referencedColumnName = "iduser")
     @ManyToOne
     private Users iduser;
+    @JoinColumn(name = "idTX", referencedColumnName = "idTX")
+    @ManyToOne
+    private Tuyenxe idTX;
     @OneToMany(mappedBy = "idnx")
     private Set<Danhgia> danhgiaSet;
-    @OneToMany(mappedBy = "idnx")
-    private Set<Tuyenxe> tuyenxeSet;
 
     public Nhaxe() {
     }
@@ -165,6 +166,14 @@ public class Nhaxe implements Serializable {
         this.iduser = iduser;
     }
 
+    public Tuyenxe getIdTX() {
+        return idTX;
+    }
+
+    public void setIdTX(Tuyenxe idTX) {
+        this.idTX = idTX;
+    }
+
     @XmlTransient
     public Set<Danhgia> getDanhgiaSet() {
         return danhgiaSet;
@@ -172,15 +181,6 @@ public class Nhaxe implements Serializable {
 
     public void setDanhgiaSet(Set<Danhgia> danhgiaSet) {
         this.danhgiaSet = danhgiaSet;
-    }
-
-    @XmlTransient
-    public Set<Tuyenxe> getTuyenxeSet() {
-        return tuyenxeSet;
-    }
-
-    public void setTuyenxeSet(Set<Tuyenxe> tuyenxeSet) {
-        this.tuyenxeSet = tuyenxeSet;
     }
 
     @Override

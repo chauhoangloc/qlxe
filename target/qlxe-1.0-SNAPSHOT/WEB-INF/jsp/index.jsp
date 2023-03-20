@@ -6,6 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Welcome to Spring Web MVC project</title>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
@@ -36,7 +37,6 @@
                         </c:forEach>
                     </ul>
                 </div>
-
             </ul>
             <form class="d-flex" >
                 <input class="form-control me-2" name="kw" type="text" placeholder="Search......">
@@ -47,6 +47,9 @@
     </div>
 </nav>
 <section class="container">
+    <c:if test="${cx.size()==0}">
+        <strong>Chuyến xe này sắp sửa vào hoạt động!</strong>
+    </c:if>
     <div class="row">
         <c:forEach items="${cx}" var="cx">
             <div class="col-md-4 col-xs-12" style="padding:1rem;text-align:center">
@@ -54,7 +57,9 @@
                     <div class="card-body">
                         <h4 class="card-title">${cx.tenchuyenxe}</h4>
                          <p class="card-text">${cx.idTX.diemdi} - ${cx.idTX.diemden}</p>
-                         <p class="card-text">${cx.giave} VNĐ</p>
+                         <p class="card-text">
+                        <fmt:formatNumber value="${cx.giave}" maxFractionDigits="3" type = "number" /> VND
+                    </p>
                         <a href="#" class="btn btn-primary">Xem chi tiết</a>
                     </div>
                     <img class="card-img-bottom" src="https://tse3.mm.bing.net/th?id=OIP.hpyVY0Y7Bnv4wj2IRj_YeQAAAA&pid=Api&P=0" alt="Card image" style="padding:20px;">

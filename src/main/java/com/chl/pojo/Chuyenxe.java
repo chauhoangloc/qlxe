@@ -5,7 +5,6 @@
 package com.chl.pojo;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -38,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Chuyenxe.findByIdchuyenxe", query = "SELECT c FROM Chuyenxe c WHERE c.idchuyenxe = :idchuyenxe"),
     @NamedQuery(name = "Chuyenxe.findByTenchuyenxe", query = "SELECT c FROM Chuyenxe c WHERE c.tenchuyenxe = :tenchuyenxe"),
     @NamedQuery(name = "Chuyenxe.findByNgaydi", query = "SELECT c FROM Chuyenxe c WHERE c.ngaydi = :ngaydi"),
-   // @NamedQuery(name = "Chuyenxe.findByGiodi", query = "SELECT c FROM Chuyenxe c WHERE c.giodi = :giodi"),
+    //@NamedQuery(name = "Chuyenxe.findByGiodi", query = "SELECT c FROM Chuyenxe c WHERE c.giodi = :giodi"),
     @NamedQuery(name = "Chuyenxe.findByGiave", query = "SELECT c FROM Chuyenxe c WHERE c.giave = :giave"),
     @NamedQuery(name = "Chuyenxe.findBySlve", query = "SELECT c FROM Chuyenxe c WHERE c.slve = :slve"),
     @NamedQuery(name = "Chuyenxe.findBySlvedaban", query = "SELECT c FROM Chuyenxe c WHERE c.slvedaban = :slvedaban"),
@@ -57,9 +56,9 @@ public class Chuyenxe implements Serializable {
     @Column(name = "ngaydi")
     @Temporal(TemporalType.DATE)
     private Date ngaydi;
-    //@Column(name = "giodi")
+   // @Column(name = "giodi")
     //@Temporal(TemporalType.TIME)
-   // private Time giodi;
+   // private Date giodi;
     @Column(name = "giave")
     private Integer giave;
     @Column(name = "slve")
@@ -106,14 +105,14 @@ public class Chuyenxe implements Serializable {
         this.ngaydi = ngaydi;
     }
 
-   /* public Time getGiodi() {
-        return giodi;
-    }
+  //  public Date getGiodi() {
+   //     return giodi;
+  //  }
 
-    public void setGiodi(Time giodi) {
-        this.giodi = giodi;
-    }
-*/
+  //  public void setGiodi(Date giodi) {
+  //      this.giodi = giodi;
+   // }
+
     public Integer getGiave() {
         return giave;
     }

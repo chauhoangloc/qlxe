@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -50,9 +48,8 @@ public class Tuyenxe implements Serializable {
     private String diemden;
     @OneToMany(mappedBy = "idTX")
     private Set<Chuyenxe> chuyenxeSet;
-    @JoinColumn(name = "idnx", referencedColumnName = "idnx")
-    @ManyToOne
-    private Nhaxe idnx;
+    @OneToMany(mappedBy = "idTX")
+    private Set<Nhaxe> nhaxeSet;
 
     public Tuyenxe() {
     }
@@ -94,12 +91,13 @@ public class Tuyenxe implements Serializable {
         this.chuyenxeSet = chuyenxeSet;
     }
 
-    public Nhaxe getIdnx() {
-        return idnx;
+    @XmlTransient
+    public Set<Nhaxe> getNhaxeSet() {
+        return nhaxeSet;
     }
 
-    public void setIdnx(Nhaxe idnx) {
-        this.idnx = idnx;
+    public void setNhaxeSet(Set<Nhaxe> nhaxeSet) {
+        this.nhaxeSet = nhaxeSet;
     }
 
     @Override

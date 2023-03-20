@@ -13,5 +13,5 @@ import java.util.Map;
  * @author NC
  */
 public interface ChuyenxeService {
-   List<Chuyenxe> getChuyenXes(Map<String , String > params);
+   List<Chuyenxe> getChuyenXes(Map<String , String > params,int page);
 }

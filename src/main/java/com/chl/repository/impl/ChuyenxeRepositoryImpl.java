@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-@PropertySource("classpath:mesages.properties")
+@PropertySource("classpath:messages.properties")
 public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
     @Autowired
@@ -37,7 +37,7 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
     @Autowired
     private Environment env;
     @Override
-    public List<Chuyenxe> getChuyenXes(Map<String, String> params) {
+    public List<Chuyenxe> getChuyenXes(Map<String, String> params,int page) {
         Session s = factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Chuyenxe> q = b.createQuery(Chuyenxe.class);
@@ -66,9 +66,9 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
             predicates.add(p);
         }*/
 
-        String idchuyenxe = params.get("idchuyenxe");
-        if (idchuyenxe != null) {
-            Predicate p = b.lessThanOrEqualTo(root.get("idchuyenxe"), Integer.parseInt(idchuyenxe));
+        String idTX = params.get("idTX");
+        if (idTX != null) {
+            Predicate p = b.lessThanOrEqualTo(root.get("idTX"), Integer.parseInt(idTX));
             predicates.add(p);
         }
 
@@ -79,6 +79,12 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
         q.orderBy(b.desc(root.get("idchuyenxe")));
         Query query = s.createQuery(q);
         
+        if(page>0){
+            int size = Integer.parseInt(env.getProperty("page.size"));
+            int start = (page-1)*size;
+            query.setFirstResult(start);
+            query.setMaxResults(size);
+        }
 
         return query.getResultList();
     }

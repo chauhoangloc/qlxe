@@ -34,7 +34,7 @@ public class Homecontroller {
     public String index(Model model, @RequestParam Map<String, String> params) {
         
         
-        List<Chuyenxe> chuyenxe= this.chuyenxeService.getChuyenXes(params);
+        List<Chuyenxe> chuyenxe= this.chuyenxeService.getChuyenXes(params,0);
         List<Tuyenxe> tuyenxe= this.tuyenxeService.getTuyenxes();
         
         

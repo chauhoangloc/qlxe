@@ -23,8 +23,8 @@ public class ChuyenxeServiceImpl implements ChuyenxeService{
     
 
     @Override
-    public List<Chuyenxe> getChuyenXes(Map<String, String> params) {
-        return this.chuyenxerepository.getChuyenXes(params);
+    public List<Chuyenxe> getChuyenXes(Map<String, String> params,int page) {
+        return this.chuyenxerepository.getChuyenXes(params,page);
     }
     
     
