@@ -13,6 +13,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,27 +25,27 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author NC
  */
 @Controller
+@ControllerAdvice
 public class Homecontroller {
-    
-    
+
     @Autowired
     private TuyenxeService tuyenxeService;
     @Autowired
     private ChuyenxeService chuyenxeService;
-    
-    
+
+    @ModelAttribute
+    public void commonAt(Model model){
+        List<Tuyenxe> tuyenxe = this.tuyenxeService.getTuyenxes();
+        model.addAttribute("tx", tuyenxe);
+    }  
     @RequestMapping(value = "/")
     public String index(Model model, @RequestParam Map<String, String> params) {
-        
-        
-        List<Chuyenxe> chuyenxe= this.chuyenxeService.getChuyenXes(params,0);
-        List<Tuyenxe> tuyenxe= this.tuyenxeService.getTuyenxes();
-        
-        
-        model.addAttribute("tx",tuyenxe);
+        int page= Integer.parseInt(params.getOrDefault("page", "1"));
+        List<Chuyenxe> chuyenxe = this.chuyenxeService.getChuyenXes(params, page);
+       
+
+        model.addAttribute("countCX",this.chuyenxeService.count());
         model.addAttribute("cx",chuyenxe);
-        
-        
         return "index";
     }
 }

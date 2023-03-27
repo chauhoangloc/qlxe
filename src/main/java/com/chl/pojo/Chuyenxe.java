@@ -21,9 +21,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -74,6 +76,8 @@ public class Chuyenxe implements Serializable {
     @OneToMany(mappedBy = "idchuyenxe")
     private Set<Datve> datveSet;
 
+    @Transient
+    private MultipartFile file;
     public Chuyenxe() {
     }
 
@@ -185,6 +189,20 @@ public class Chuyenxe implements Serializable {
     @Override
     public String toString() {
         return "com.chl.pojo.Chuyenxe[ idchuyenxe=" + idchuyenxe + " ]";
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
     
 }

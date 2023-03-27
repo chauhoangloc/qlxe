@@ -7,6 +7,8 @@ C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Datve.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Giaohang.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\configs\HibernateConfig.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\ChuyenxeService.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\formater\TuyenxeFormatter.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\controllers\AdminController.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Khoanhaxe.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\impl\ChuyenxeServiceImpl.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Users.java
@@ -17,4 +19,5 @@ C:\Learn\LTJava\qlxe\src\main\java\com\chl\repository\TuyenxeRepository.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\service\TuyenxeService.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Tuyenxe.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\repository\impl\TuyenxeRepositoryImpl.java
+C:\Learn\LTJava\qlxe\src\main\java\com\chl\configs\TilesConfig.java
 C:\Learn\LTJava\qlxe\src\main\java\com\chl\pojo\Danhgia.java

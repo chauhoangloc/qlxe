@@ -5,7 +5,6 @@
 package com.chl.repository.impl;
 
 import com.chl.pojo.Chuyenxe;
-import static com.chl.pojo.Chuyenxe_.idchuyenxe;
 import com.chl.repository.ChuyenxeReposity;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -88,4 +88,23 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
         return query.getResultList();
     }
+
+    @Override
+    public int count() {
+       Session session = this.factory.getObject().getCurrentSession();
+       Query q= session.createQuery("SELECT COUNT(*) FROM Chuyenxe");
+       
+       return  Integer.parseInt(q.getSingleResult().toString());
+    }
+
+    @Override
+    public boolean AddOrUpdateCX(Chuyenxe cx) {
+         Session session = this.factory.getObject().getCurrentSession();
+        try{
+            session.save(cx);
+            return true;
+        }catch(HibernateException ex){
+        return false;
+         }
+}
 }

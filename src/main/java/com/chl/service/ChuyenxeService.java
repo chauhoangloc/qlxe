@@ -14,4 +14,6 @@ import java.util.Map;
  */
 public interface ChuyenxeService {
    List<Chuyenxe> getChuyenXes(Map<String , String > params,int page);
+   int count();
+   boolean AddOrUpdateCX(Chuyenxe cx);
 }

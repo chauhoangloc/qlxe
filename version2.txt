@@ -1,0 +1,208 @@
+
+CREATE DATABASE qlxe1;
+USE qlxe1;
+
+CREATE TABLE Users (
+iduser INT PRIMARY KEY AUTO_INCREMENT,
+username VARCHAR(50),
+pw VARCHAR(50),
+email VARCHAR(50),
+avatar VARCHAR(50),
+role INT
+);
+CREATE TABLE Tuyenxe (
+idTX INT PRIMARY KEY AUTO_INCREMENT,
+diemdi VARCHAR(100),
+diemden VARCHAR(100)
+);
+
+CREATE TABLE Nhaxe (
+idnx INT PRIMARY KEY AUTO_INCREMENT,
+iduser INT,
+idTX INT,
+tennhaxe VARCHAR(50),
+diachi VARCHAR(100),
+sdt VARCHAR(20),
+email VARCHAR(50),
+giaohang BIT,
+avatar VARCHAR(50),
+FOREIGN KEY (iduser) REFERENCES Users(iduser),
+FOREIGN KEY (idTX) REFERENCES Tuyenxe(idTX)
+);
+
+CREATE TABLE Chuyenxe (
+idchuyenxe INT PRIMARY KEY AUTO_INCREMENT,
+tenchuyenxe varchar(100),
+idTX INT,
+ngaydi DATE,
+giodi TIME,
+giave int,
+slve INT,
+slvedaban INT,
+hinhanh varchar(500),
+FOREIGN KEY (idTX) REFERENCES Tuyenxe(idTX)
+);
+
+CREATE TABLE Datve (
+iddatved INT PRIMARY KEY AUTO_INCREMENT,
+iduser INT,
+idchuyenxe INT,
+ngaydatve datetime,
+soluongve INT,
+thanhtoanOnl BIT,
+statusThanhtoan VARCHAR(20),
+FOREIGN KEY (iduser) REFERENCES Users(iduser),
+FOREIGN KEY (idchuyenxe) REFERENCES Chuyenxe(idchuyenxe)
+);
+
+CREATE TABLE Giaohang (
+    idgiaoHang INT PRIMARY KEY AUTO_INCREMENT,
+    idnx INT,
+    tenNguoigui VARCHAR(50),
+    sdtnguoigui VARCHAR(20),
+    tennguoinhann VARCHAR(50),
+    sdtnguoinhan VARCHAR(20),
+    tggui DATETIME,
+    tgnhan DATETIME,
+    trangthai VARCHAR(20),
+    FOREIGN KEY (idnx) REFERENCES Nhaxe(idnx)
+);
+
+CREATE TABLE Danhgia (
+    iddanhgia INT PRIMARY KEY AUTO_INCREMENT,
+    iduser INT,
+    idnx INT,
+    noidung VARCHAR(500),
+    diem INT,
+    FOREIGN KEY (iduser) REFERENCES Users(iduser),
+    FOREIGN KEY (idnx) REFERENCES Nhaxe(idnx)
+);
+
+CREATE TABLE Khoanhaxe (
+    idkhoaxe INT PRIMARY KEY AUTO_INCREMENT,
+    idnx INT,
+    trangthai BIT,
+    FOREIGN KEY (idnx) REFERENCES Nhaxe(idnx)
+);
+
+INSERT INTO Users (username, pw, email, avatar, role)
+VALUES ('admin', '123456', 'admin@qlxe.vn', 'avt.png', 1),
+       ('nhanvien1', '1', 'nhanvien1@qlxe.vn', 'avt.png', 2),
+       ('nhanvien2', '1', 'nhanvien2@qlxe.vn', 'avt.png', 2),
+       ('thanhbuoi', '1', 'thanhbuoi@gmail.com', 'avt.png', 3),
+       ('phuongtrang', '1', 'phuongtrang@gmail.com', 'avt.png', 3), 
+	   ('thaonhung', '1', 'thaonhung@gmail.com', 'avt.png', 3),  
+       ('hoangloc','1', 'hoangloc@gmail.com', 'avt.png', 4),
+       ('nguyenvana','1', 'nguyenvana@gmail.com', 'avt.png', 4),
+       ('lethib','1', 'lethib@gmail.com', 'avt.png', 4);
+
+INSERT INTO Tuyenxe ( diemdi, diemden)
+VALUES ( 'TP. Hồ Chí Minh', 'TP. Đà Lạt'),
+       ( 'TP. Đà Lạt', 'TP. Hồ Chí Minh'),
+       ( 'TP. Hồ Chí Minh', 'Cần Thơ'),
+       ( 'Cần Thơ', 'TP.Hồ Chí Minh'),     
+       ( 'TP. Hồ Chí Minh', 'Đà Nẵng'),
+       ( 'Đà Nẵng', 'TP. Hồ Chí Minh'),
+       ( 'Tx. Kiến Tường', 'TP. Hồ Chí Minh'),
+       ( 'TP. Hồ Chí Minh', 'Tx. Kiến Tường');
+
+INSERT INTO Nhaxe (iduser,idTX, tennhaxe, diachi, sdt, email, giaohang, avatar)
+VALUES (4,1, 'Thành bưởi', '256 Lê Hồng Phong Quận 5 TP.HCM', '0123456789', 'thanhbuoi@gmail.com', 1, 'avt.png'),
+	   (4,2, 'Thành bưởi', '256 Lê Hồng Phong Quận 5 TP.HCM', '0123456789', 'thanhbuoi@gmail.com', 1, 'avt.png'),
+       (4,3, 'Thành bưởi', '256 Lê Hồng Phong Quận 5 TP.HCM', '0123456789', 'thanhbuoi@gmail.com', 1, 'avt.png'),
+       (4,4, 'Thành bưởi', '256 Lê Hồng Phong Quận 5 TP.HCM', '0123456789', 'thanhbuoi@gmail.com', 1, 'avt.png'),
+       (5,1,'Phương Trang', '100 3/2 Quận 11 TP.HCM', '0000000000','phuongtrang@gmail.com',1, 'avt.png'),
+       (5,2,'Phương Trang', '100 3/2 Quận 11 TP.HCM', '0000000000','phuongtrang@gmail.com',1, 'avt.png'),
+       (5,5,'Phương Trang', '100 3/2 Quận 11 TP.HCM', '0000000000','phuongtrang@gmail.com',1, 'avt.png'),
+	   (5,6,'Phương Trang', '100 3/2 Quận 11 TP.HCM', '0000000000','phuongtrang@gmail.com',1, 'avt.png'),
+       (6,7, 'Thảo Nhung', '2 Lê Lợi tx.Kiến Tường', '1111111111','thaonhung@gmail.com',1, 'avt.png'),
+	   (6,8,'Phương Trang', '100 3/2 Quận 11 TP.HCM', '0000000000','phuongtrang@gmail.com',1, 'avt.png');
+
+
+
+INSERT INTO Chuyenxe (idTX, tenchuyenxe, ngaydi, giodi, giave, slve, slvedaban,hinhanh)
+VALUES
+(1, 'Thành Bưởi giường 34', NULL, '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(1, 'Thành Bưởi giường 34', NULL, '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(1, 'Thành Bưởi giường 34', NULL, '2:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(1, 'Thành Bưởi giường 34', NULL, '4:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+
+(1, 'Thành Bưởi giường nằm', NULL, '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(1, 'Thành Bưởi giường nằm', '2023-03-17', '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(1, 'Thành Bưởi giường nằm', '2023-03-18', '2:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(1, 'Thành Bưởi giường nằm', '2023-03-18', '4:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+
+(2, 'Thành Bưởi giường 34', '2023-03-17', '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(2, 'Thành Bưởi giường 34', '2023-03-17', '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(2, 'Thành Bưởi giường 34', '2023-03-18', '2:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+(2, 'Thành Bưởi giường 34', '2023-03-18', '4:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.UIjpxRyski5HsMb7gxIn5QHaE7&pid=Api&P=0'),
+
+(2, 'Thành Bưởi giường nằm', '2023-03-17', '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(2, 'Thành Bưởi giường nằm', '2023-03-17', '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(2, 'Thành Bưởi giường nằm', '2023-03-18', '2:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(2, 'Thành Bưởi giường nằm', NULL, '04:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+
+(3, 'Thành Bưởi giường nằm', NULL, '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(3, 'Thành Bưởi giường nằm', NULL, '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(3, 'Thành Bưởi giường nằm', NULL, '02:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(3, 'Thành Bưởi giường nằm', NULL, '04:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+
+(4, 'Thành Bưởi giường nằm', NULL, '22:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(4, 'Thành Bưởi giường nằm', NULL, '24:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(4, 'Thành Bưởi giường nằm', NULL, '02:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+(4, 'Thành Bưởi giường nằm', NULL, '04:00:00', 340000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.fL0TnXS1-6PWDofjK7EsRgHaEo&pid=Api&P=0'),
+
+(1, 'Phương Trang giường nằm', NULL, '20:00:00', 300000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(1, 'Phương Trang giường nằm', NULL, '22:00:00', 350000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(1, 'Phương Trang giường nằm', NULL, '24:00:00', 35000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(1, 'Phương Trang giường nằm', NULL, '01:00:00', 300000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+
+(2, 'Phương Trang giường nằm', NULL, '20:00:00', 30000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(2, 'Phương Trang giường nằm', NULL, '22:00:00', 360000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(2, 'Phương Trang giường nằm', NULL, '24:00:00', 360000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(2, 'Phương Trang giường nằm', NULL, '01:00:00', 36000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+
+(5, 'Phương Trang giường nằm', NULL, '20:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(5, 'Phương Trang giường nằm', NULL, '22:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(5, 'Phương Trang giường nằm', NULL, '24:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(5, 'Phương Trang giường nằm', NULL, '01:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+
+(6, 'Phương Trang giường nằm', NULL, '20:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(6, 'Phương Trang giường nằm', NULL, '22:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(6, 'Phương Trang giường nằm', NULL, '24:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+(6, 'Phương Trang giường nằm', NULL, '01:00:00', 340000, 20, 0,'https://tse2.explicit.bing.net/th?id=OIP.9uBk6zFhSbx9XBCkmbK52AHaEl&pid=Api&P=0'),
+
+(7, 'Tốc Hành Thảo Nhung', NULL, '05:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(7, 'Tốc Hành Thảo Nhung', NULL, '07:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(7, 'Tốc Hành Thảo Nhung', NULL, '09:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(7, 'Tốc Hành Thảo Nhung', NULL, '11:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(8, 'Tốc Hành Thảo Nhung', NULL, '05:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(8, 'Tốc Hành Thảo Nhung', NULL, '07:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(8, 'Tốc Hành Thảo Nhung', NULL, '09:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0'),
+(8, 'Tốc Hành Thảo Nhung', NULL, '11:00:00', 120000, 20, 0,'https://tse2.mm.bing.net/th?id=OIP.9vwz_yymg3KeFZ_Y7XAkpwEyDM&pid=Api&P=0');
+
+INSERT INTO Giaohang (idnx, tenNguoigui, sdtnguoigui, tennguoinhann, sdtnguoinhan, tggui, tgnhan, trangthai)
+VALUES
+(1, 'Châu Hoàng Lộc', '1212121212', 'Châu Hoàng Bảo', '1313131313', '2023-02-03 08:00:00', '2023-02-05 10:00:00', 'Đã gửi'),
+(2, 'Nguyễn thị A', '1212121212', 'Lê Văn B', '1313131313', '2023-02-03 08:00:00', '2023-02-05 10:00:00', 'Đã gửi');
+
+INSERT INTO Datve (iduser, idchuyenxe, ngaydatve, soluongve, thanhtoanOnl, statusThanhtoan)
+VALUES
+(7, 1, '2023-02-03 08:00:00', 1, 1, 'Đã thanh toán'),
+(7, 2, '2023-05-07 08:00:00', 3, 0, 'Chưa thanh toán'),
+(8, 5, '2023-03-20 08:00:00', 2, 1, 'Đã thanh toán'),
+(9, 10, '2023-02-18 08:00:00', 0, 0, 'Đã thanh toán');
+
+
+INSERT INTO Danhgia (iduser, idnx, noidung, diem) VALUES
+(7, 1, 'Tuyệt vời', 5),
+(8, 1, 'Tạm ổn', 3),
+(7, 2, 'Tuyệt vời', 5),
+(9, 3, 'Kém', 1);
+
+INSERT INTO Khoanhaxe (idnx, trangthai)
+VALUES
+(1, 0),
+(2, 0),
+(3, 0);
+
