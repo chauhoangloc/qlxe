@@ -52,7 +52,7 @@ public class Chuyenxe implements Serializable {
     @Basic(optional = false)
     @Column(name = "idchuyenxe")
     private Integer idchuyenxe;
-    @Size(max = 100)
+    @Size(max = 100,message = "{chuyenxe.tenchuyenxe.nullerr}")
     @Column(name = "tenchuyenxe")
     private String tenchuyenxe;
     @Column(name = "ngaydi")

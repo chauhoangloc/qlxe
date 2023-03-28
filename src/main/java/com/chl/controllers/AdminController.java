@@ -28,6 +28,7 @@ public class AdminController {
     @GetMapping("/chuyenxe")
     public String tuyenxes(Model model){
             model.addAttribute("chuyenxe", new Chuyenxe());
+           
     return "QTChuyenXe";
     }
     

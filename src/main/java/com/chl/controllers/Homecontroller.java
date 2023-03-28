@@ -34,10 +34,11 @@ public class Homecontroller {
     private ChuyenxeService chuyenxeService;
 
     @ModelAttribute
-    public void commonAt(Model model){
+    public void commonAt(Model model, @RequestParam Map<String, String> params){
         List<Tuyenxe> tuyenxe = this.tuyenxeService.getTuyenxes();
         model.addAttribute("tx", tuyenxe);
     }  
+    
     @RequestMapping(value = "/")
     public String index(Model model, @RequestParam Map<String, String> params) {
         int page= Integer.parseInt(params.getOrDefault("page", "1"));
