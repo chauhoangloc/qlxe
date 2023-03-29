@@ -36,22 +36,24 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
     private LocalSessionFactoryBean factory;
     @Autowired
     private Environment env;
+
     @Override
-    public List<Chuyenxe> getChuyenXes(Map<String, String> params,int page) {
+    public List<Chuyenxe> getChuyenXes(Map<String, String> params, int page) {
         Session s = factory.getObject().getCurrentSession();
         CriteriaBuilder b = s.getCriteriaBuilder();
         CriteriaQuery<Chuyenxe> q = b.createQuery(Chuyenxe.class);
         Root root = q.from(Chuyenxe.class);
         q.select(root);
 
-        List<Predicate> predicates = new ArrayList<>();
-        String kw = params.get("kw");
-        if (kw != null && !kw.isEmpty()) {
-            Predicate p = b.like(root.get("tenchuyenxe").as(String.class),
-                    String.format("%%%s%%", kw));
-            predicates.add(p);
-        }
-/*
+        if (params != null) {
+            List<Predicate> predicates = new ArrayList<>();
+            String kw = params.get("kw");
+            if (kw != null && !kw.isEmpty()) {
+                Predicate p = b.like(root.get("tenchuyenxe").as(String.class),
+                        String.format("%%%s%%", kw));
+                predicates.add(p);
+            }
+            /*
         String fromPrice = params.get("fromPrice");
         if (fromPrice != null && !fromPrice.isEmpty()) {
             Predicate p = b.greaterThanOrEqualTo(root.get("price").as(Double.class),
@@ -66,22 +68,22 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
             predicates.add(p);
         }*/
 
-        String idTX = params.get("idTX");
-        if (idTX != null) {
-            Predicate p = b.lessThanOrEqualTo(root.get("idTX"), Integer.parseInt(idTX));
-            predicates.add(p);
+            String idTX = params.get("idTX");
+            if (idTX != null) {
+                Predicate p = b.lessThanOrEqualTo(root.get("idTX"), Integer.parseInt(idTX));
+                predicates.add(p);
+            }
+
+            q.where(predicates.toArray(new Predicate[predicates.size()]));
+
         }
-
-        q.where(predicates.toArray(new Predicate[predicates.size()]));
-
-
 
         q.orderBy(b.desc(root.get("idchuyenxe")));
         Query query = s.createQuery(q);
-        
-        if(page>0){
+
+        if (page > 0) {
             int size = Integer.parseInt(env.getProperty("page.size"));
-            int start = (page-1)*size;
+            int start = (page - 1) * size;
             query.setFirstResult(start);
             query.setMaxResults(size);
         }
@@ -91,20 +93,20 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
     @Override
     public int count() {
-       Session session = this.factory.getObject().getCurrentSession();
-       Query q= session.createQuery("SELECT COUNT(*) FROM Chuyenxe");
-       
-       return  Integer.parseInt(q.getSingleResult().toString());
+        Session session = this.factory.getObject().getCurrentSession();
+        Query q = session.createQuery("SELECT COUNT(*) FROM Chuyenxe");
+
+        return Integer.parseInt(q.getSingleResult().toString());
     }
 
     @Override
     public boolean AddOrUpdateCX(Chuyenxe cx) {
-         Session session = this.factory.getObject().getCurrentSession();
-        try{
+        Session session = this.factory.getObject().getCurrentSession();
+        try {
             session.save(cx);
             return true;
-        }catch(HibernateException ex){
-        return false;
-         }
-}
+        } catch (HibernateException ex) {
+            return false;
+        }
+    }
 }

@@ -25,10 +25,11 @@ public class AdminController {
     @Autowired
     private ChuyenxeService chuyenxeService;
     
+    
     @GetMapping("/chuyenxe")
     public String tuyenxes(Model model){
             model.addAttribute("chuyenxe", new Chuyenxe());
-           
+            model.addAttribute("cx", this.chuyenxeService.getChuyenXes(null, 0));
     return "QTChuyenXe";
     }
     
