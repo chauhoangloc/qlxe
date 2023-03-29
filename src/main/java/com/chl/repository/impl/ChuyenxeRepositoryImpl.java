@@ -109,4 +109,22 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
             return false;
         }
     }
+
+    @Override
+    public Chuyenxe getChuyenxeId(int id) {
+         Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Chuyenxe.class, id);
+    }
+
+    @Override
+    public boolean delCX(int id) {
+        Chuyenxe cx = this.getChuyenxeId(id);
+        Session s = this.factory.getObject().getCurrentSession();
+        try {
+            s.delete(cx);
+            return true;
+        } catch (HibernateException ex) {
+            return false;
+        }
+    }
 }

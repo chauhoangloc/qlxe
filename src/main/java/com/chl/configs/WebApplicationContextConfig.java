@@ -19,6 +19,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /**
  *
@@ -40,7 +41,12 @@ public class WebApplicationContextConfig implements
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-
+@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
+    }
+    
+    
     @Bean
     public InternalResourceViewResolver
             getInternalResourceViewResolver() {

@@ -2,6 +2,7 @@ com.chl.configs.HibernateConfig=org.springframework.stereotype.Component
 com.chl.configs.TilesConfig=org.springframework.stereotype.Component
 com.chl.configs.WebApplicationContextConfig=org.springframework.stereotype.Component
 com.chl.controllers.AdminController=org.springframework.stereotype.Component
+com.chl.controllers.ApiChuyenXeController=org.springframework.stereotype.Component
 com.chl.controllers.Homecontroller=org.springframework.stereotype.Component
 com.chl.pojo.Chuyenxe=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.chl.pojo.Chuyenxe_=javax.annotation.Generated,javax.persistence.metamodel.StaticMetamodel

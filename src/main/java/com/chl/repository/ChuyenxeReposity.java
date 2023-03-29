@@ -16,4 +16,6 @@ public interface ChuyenxeReposity {
     List<Chuyenxe> getChuyenXes(Map<String , String > params,int page);
     int count();
     boolean AddOrUpdateCX(Chuyenxe cx);
+    Chuyenxe getChuyenxeId(int id);
+    boolean delCX(int id);
 }

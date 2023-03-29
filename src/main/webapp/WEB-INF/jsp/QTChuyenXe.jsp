@@ -63,13 +63,13 @@
         <th>Tên Chuyến</th>
         <th>Tuyến</th>
         <th>Gía Vé</th>
-        <th>Ngày/giờ</th>
+        <th>Ngày/giờ</th    >
         <th>Số lượng vé tối đa</th>
         <th>Số lượng vé đã bán</th>
         <th></th>
     </tr>
     <c:forEach items="${cx}" var="cx">
-        <tr>
+        <tr id="chuyenxe${cx.idchuyenxe}">
             <td>
                <img src="${cx.hinhanh}" width="300" />
             </td>
@@ -80,9 +80,18 @@
             <td>-</td>
             <td>${cx.slve}</td>
             <td>${cx.slvedaban}</td>
-            <td><input type="button" value="Xóa" class="btn btn-danger"></td>
+            <td>
+                <div id="spinner${cx.idchuyenxe}" style="display:none" class="spinner-border text-primary"></div>
+                <c:url value="/api/chuyenxe/${cx.idchuyenxe}" var="endpoint" />
+                <input  type="button" onclick="delCX('${endpoint}', ${cx.idchuyenxe})" value="Xóa" class="btn btn-danger" />
+             
         </tr>
 
     
     </c:forEach>
 </table>
+
+
+
+
+<script src="<c:url value="/js/chuyenxe.js" />"></script>

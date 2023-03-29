@@ -53,4 +53,14 @@ public class ChuyenxeServiceImpl implements ChuyenxeService{
     }
     return this.chuyenxerepository.AddOrUpdateCX(cx);
     }
+
+    @Override
+    public Chuyenxe getChuyenxeId(int id) {
+       return this.chuyenxerepository.getChuyenxeId(id);
+    }
+
+    @Override
+    public boolean delCX(int id) {
+       return this.chuyenxerepository.delCX(id);
+    }
 }
