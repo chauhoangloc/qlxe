@@ -22,5 +22,9 @@
         <put-attribute name="title" value="Quản Trị Sản Phẩm" />
         <put-attribute name="content" value="/WEB-INF/jsp/QTChuyenXe.jsp" />
     </definition>
+     <definition name="Cart" extends="baseLayout">
+        <put-attribute name="title" value="Giỏ Hàng" />
+        <put-attribute name="content" value="/WEB-INF/jsp/Cart.jsp" />
+    </definition>
 </tiles-definitions>
 

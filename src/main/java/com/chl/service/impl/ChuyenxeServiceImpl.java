@@ -42,7 +42,7 @@ public class ChuyenxeServiceImpl implements ChuyenxeService{
 
     @Override
     public boolean AddOrUpdateCX(Chuyenxe cx) {
-        if(cx.getFile() != null){
+        if(!cx.getFile().isEmpty()){
          try {
                 Map res = this.cloudinary.uploader().upload(cx.getFile().getBytes(),
                         ObjectUtils.asMap("resource_type", "auto"));

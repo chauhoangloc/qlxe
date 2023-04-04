@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,11 +26,18 @@ public class AdminController {
     @Autowired
     private ChuyenxeService chuyenxeService;
     
+   
+    @ModelAttribute
+    public void commonAttributes(Model model) {
+        model.addAttribute("cx", this.chuyenxeService.getChuyenXes(null,0));
+
+    }
     
     @GetMapping("/chuyenxe")
     public String tuyenxes(Model model){
             model.addAttribute("chuyenxe", new Chuyenxe());
-            model.addAttribute("cx", this.chuyenxeService.getChuyenXes(null, 0));
+          
+
     return "QTChuyenXe";
     }
     
@@ -43,4 +51,12 @@ public class AdminController {
         return "QTChuyenXe";
     }
     
+   
+    
+    @GetMapping("/chuyenxe/{idchuyenxe}")
+    public String update(Model model,@PathVariable(value="idchuyenxe")int id){
+        model.addAttribute("chuyenxe", this.chuyenxeService.getChuyenxeId(id));
+            
+    return "QTChuyenXe";
+    }
 }

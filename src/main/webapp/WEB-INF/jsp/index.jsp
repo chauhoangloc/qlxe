@@ -9,8 +9,12 @@
     <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="<c:url value="/resources/js/Cart.js" />"></script>
+    <link href="https://cdnjs.com/libraries/font-awesome">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <c:url value="/api/cart" var="endpoint" />
 <section class="container">
     <c:if test="${cx.size()==0}">
         <strong>Chuyến xe này sắp sửa vào hoạt động!</strong>
@@ -26,6 +30,7 @@
                             <fmt:formatNumber value="${cx.giave}" maxFractionDigits="3" type = "number" /> VND
                         </p>
                         <a href="#" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="#" class="btn btn-primary" onclick="addToCart('${endpoint}',${cx.idchuyenxe},'${cx.tenchuyenxe}',${cx.giave})">Đặt hàng</a>
                     </div>
                     <img class="card-img-bottom" src="${cx.hinhanh}" alt="Card image" style="padding:20px;">
                 </div>
@@ -33,7 +38,11 @@
         </c:forEach>
     </div>
 </section>
-<p> ${countCX}</p>
+<a href="<c:url value="/cart"/>" class="nav-link text-primary">
+                                <i class="fa fa-car fa-3x" aria-hidden="true"></i>
+
+                                <div id="cartCouter">${cartCouter}</div>
+                            </a>
 <ul class="pagination">
     <c:forEach begin="1" end="${Math.ceil(countCX/9)}" var="i">   
         <c:url value="/" var="c">

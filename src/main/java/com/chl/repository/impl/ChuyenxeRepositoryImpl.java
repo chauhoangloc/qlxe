@@ -103,7 +103,10 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
     public boolean AddOrUpdateCX(Chuyenxe cx) {
         Session session = this.factory.getObject().getCurrentSession();
         try {
-            session.save(cx);
+              if (cx.getIdchuyenxe()> 0)
+                session.update(cx);
+            else
+                 session.save(cx);
             return true;
         } catch (HibernateException ex) {
             return false;
@@ -121,6 +124,7 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
         Chuyenxe cx = this.getChuyenxeId(id);
         Session s = this.factory.getObject().getCurrentSession();
         try {
+            
             s.delete(cx);
             return true;
         } catch (HibernateException ex) {

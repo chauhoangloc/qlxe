@@ -16,6 +16,7 @@
     <div class="alert alert-danger">${errMsg}</div>
 </c:if> 
 <c:url value="/admin/chuyenxe" var="action" />
+
 <form:form method="POST" action="${action}" modelAttribute="chuyenxe" enctype="multipart/form-data">
     <form:errors path="*" element="div" cssClass="alert alert-danger" />
     <div class="form-floating mb-3 mt-3">
@@ -23,75 +24,95 @@
         <label for="tenchuyenxe">Tên Chuyến Xe</label>
     </div>
 
-
     <div class="form-floating">
-        <form:select class="form-select" id="idTX" name="idTX" path="idTX">
-            <c:forEach items="${tx}" var="cx">
+    <form:select class="form-select" id="idTX" name="idTX" path="idTX">
+        <c:forEach items="${tx}" var="tx">
+            <c:choose>
+                <c:when test="${chuyenxe.idTX.idTX == tx.idTX}">
+                    <option value="${tx.idTX}" selected>${tx.diemdi}-${tx.diemden}</option>
+                </c:when>
+                <c:otherwise>
+                    <option value="${tx.idTX}">${tx.diemdi}-${tx.diemden}</option>
 
-                <option value="${cx.idTX}">${cx.diemdi}-${cx.diemden}</option>
+                </c:otherwise>
+            </c:choose>
 
-            </c:forEach>
-        </form:select>
-        <label for="idTX" class="form-label">Tuyến xe:</label>
-    </div>
+        </c:forEach>
+    </form:select>
+    <label for="idTX" class="form-label">Tuyến xe:</label>
+</div>
+<div class="form-floating mb-3 mt-3">
+    <form:input class="form-control" id="giave"  placeholder="Giá Vé" path="giave" name="giave" />
+    <label for="giave">Giá Vé</label>
+</div>
+<div class="form-floating mb-3 mt-3">
+    <form:input class="form-control" id="slve"  placeholder="Số Lượng Vé" path="slve" name="slve"/>
+    <label for="slve">Số Lượng Vé</label>
+</div>
+<div class="form-floating mb-3 mt-3">
+    <form:input class="form-control" id="slvedaban"  placeholder="Số Lượng Vé Đã bán" path="slvedaban" name="slvedaban" value="0" />
+    <label for="tenchuyenxe">Số Vé Đã Bán</label>
+</div>
+<div class="form-floating mb-3 mt-3">
+    <form:input class="form-control" type="file" id="file"  placeholder="Tên Chuyến Xe" path="file" name="file" />
+    <label for="file">Ảnh</label>
+</div> 
+<c:if test="${chuyenxe.hinhanh != null && chuyenxe.hinhanh != ''}">
     <div class="form-floating mb-3 mt-3">
-        <form:input class="form-control" id="giave"  placeholder="Giá Vé" path="giave" name="giave" value="0"/>
-        <label for="giave">Giá Vé</label>
+        <img src="${chuyenxe.hinhanh}" width="300" />
     </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input class="form-control" id="slve"  placeholder="Số Lượng Vé" path="slve" name="slve" value="0"/>
-        <label for="slve">Số Lượng Vé</label>
-    </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input class="form-control" id="slvedaban"  placeholder="Số Lượng Vé Đã bán" path="slvedaban" name="slvedaban" value="0" />
-        <label for="tenchuyenxe">Số Vé Đã Bán</label>
-    </div>
-    <div class="form-floating mb-3 mt-3">
-        <form:input class="form-control" type="file" id="file"  placeholder="Tên Chuyến Xe" path="file" name="file" />
-        <label for="file">Ảnh</label>
-    </div> 
-    <div class="form-floating mt-2">
-        <input type="submit" value="Thêm Chuyến" class="btn btn-danger" />
-    </div>
+</c:if>
+<div class="form-floating mt-2">
+    <c:choose>
+        <c:when test="${chuyenxe.idchuyenxe > 0}">
+            <form:hidden path="idchuyenxe" />
+            <form:hidden path="hinhanh" />
+            <input type="submit" value="Cập nhật sản phẩm" class="btn btn-success" />
+        </c:when>
+        <c:otherwise>
+            <input type="submit" value="Thêm sản phẩm" class="btn btn-success" />
+        </c:otherwise>
+    </c:choose>
+
+</div>
 </form:form>
 
-
-<table class="table">11111
+<table class="table">
     <tr>
         <th></th>
         <th>Id</th>
         <th>Tên Chuyến</th>
         <th>Tuyến</th>
         <th>Gía Vé</th>
-        <th>Ngày/giờ</th    >
+        <th>Ngày/giờ</th>
         <th>Số lượng vé tối đa</th>
         <th>Số lượng vé đã bán</th>
         <th></th>
     </tr>
     <c:forEach items="${cx}" var="cx">
         <tr id="chuyenxe${cx.idchuyenxe}">
-            <td>
-               <img src="${cx.hinhanh}" width="300" />
+            <td id="chuyenxe${cx.idchuyenxe}">
+                <img src="${cx.hinhanh}" width="180" />
             </td>
             <td>${cx.idchuyenxe}</td>
             <td>${cx.tenchuyenxe}</td>
-            <td>${cx.idTX.diemdi}-${cx.idTX.diemden}</td>
-            <td>${cx.giave}</td>
+            <td>${cx.idTX.diemdi} -${cx.idTX.diemden}</td>
+            <td>${cx.giave} VNĐ</td>
             <td>-</td>
             <td>${cx.slve}</td>
             <td>${cx.slvedaban}</td>
+
             <td>
-                <div id="spinner${cx.idchuyenxe}" style="display:none" class="spinner-border text-primary"></div>
+               <div id="spinner${cx.idchuyenxe}" style="display:none" class="spinner-border text-primary"></div>
                 <c:url value="/api/chuyenxe/${cx.idchuyenxe}" var="endpoint" />
                 <input  type="button" onclick="delCX('${endpoint}', ${cx.idchuyenxe})" value="Xóa" class="btn btn-danger" />
              
-        </tr>
 
-    
+                <a href="<c:url value="/admin/chuyenxe/${cx.idchuyenxe}" />" class="btn btn-info">Cập nhật</a>
+
+            </td>
+        </tr>
     </c:forEach>
 </table>
-
-
-
 
 <script src="<c:url value="/js/chuyenxe.js" />"></script>
