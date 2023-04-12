@@ -1,8 +1,9 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.chl.controllers;
+import com.chl.Utils.Utils;
 import com.chl.pojo.Cart;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ public class CartController {
             model.addAttribute("carts1",cart.values());
         else
             model.addAttribute("carts1",null);
+        model.addAttribute("cartStats", Utils.cartStats(cart));
         return "Cart";
     }
 

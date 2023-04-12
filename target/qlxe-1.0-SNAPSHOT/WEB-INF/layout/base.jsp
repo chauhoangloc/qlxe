@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<script src="<c:url value="/js/Cart.js" />"></script>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,3 +25,4 @@
         <tiles:insertAttribute name="footer" />
     </body>
 </html>
+

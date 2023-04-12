@@ -1,6 +1,7 @@
 com\chl\pojo\Danhgia.class
 com\chl\pojo\Giaohang_.class
 com\chl\repository\ChuyenxeReposity.class
+META-INF\spring.components
 com\chl\pojo\Users_.class
 com\chl\controllers\Homecontroller.class
 com\chl\pojo\Chuyenxe.class

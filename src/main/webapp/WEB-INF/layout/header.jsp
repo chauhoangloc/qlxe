@@ -41,8 +41,8 @@
                 <form class="d-flex" >
                      <a href="<c:url value="/cart"/>" class="nav-link text-primary">
                                 <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-
-                                <div id="cartCouter">${cartCouter}</div>
+                                 <span class="badge bg-danger cartCounter">${cartCouter}</span>   
+                                
                             </a>
                         </ul>
                     <input class="form-control me-2" name="kw" type="text" placeholder="Search......">

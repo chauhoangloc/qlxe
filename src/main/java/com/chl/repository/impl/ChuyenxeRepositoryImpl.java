@@ -98,25 +98,23 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
         return Integer.parseInt(q.getSingleResult().toString());
     }
-
+ @Override
+    public Chuyenxe getChuyenxeId(int id) {
+         Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Chuyenxe.class, id);
+    }
     @Override
     public boolean AddOrUpdateCX(Chuyenxe cx) {
         Session session = this.factory.getObject().getCurrentSession();
         try {
-              if (cx.getIdchuyenxe()> 0)
-                session.update(cx);
+            if (cx.getIdchuyenxe()> 0)
+               session.update(cx);
             else
                  session.save(cx);
             return true;
         } catch (HibernateException ex) {
             return false;
         }
-    }
-
-    @Override
-    public Chuyenxe getChuyenxeId(int id) {
-         Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Chuyenxe.class, id);
     }
 
     @Override

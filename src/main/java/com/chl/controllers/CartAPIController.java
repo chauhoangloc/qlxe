@@ -10,7 +10,12 @@ import com.chl.pojo.Cart;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 /**
@@ -34,6 +39,28 @@ public class CartAPIController  {
         }
         session.setAttribute("cart",cart);
         return Utils.countCart(cart);
+    }
+     @PutMapping("/api/cart")
+     public ResponseEntity<Map<String,String>> updateCart(@RequestBody Cart params, HttpSession session){
+        Map<Integer,Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        if(cart ==null)
+            cart = new HashMap<>();
+        int idchuyenxe=params.getIdchuyenxe();
+        if(cart.containsKey(idchuyenxe)==true){
+            Cart c= cart.get(idchuyenxe);
+            c.setCount(params.getCount());
+        }
+        session.setAttribute("cart",cart);
+        return new ResponseEntity<>(Utils.cartStats(cart),HttpStatus.OK);
+    }
+    @DeleteMapping("/api/cart/{idchuyenxe}")
+    public ResponseEntity<Map<String,String>> deleteCart(@PathVariable(value = "idchuyenxe") int idchuyenxe, HttpSession session){
+        Map<Integer,Cart> cart = (Map<Integer, Cart>) session.getAttribute("cart");
+        if(cart!=null && cart.containsKey(idchuyenxe)){
+            cart.remove(idchuyenxe);
+            session.setAttribute("cart",cart);
+        }
+        return new ResponseEntity<>(Utils.cartStats(cart),HttpStatus.OK);
     }
 }
 

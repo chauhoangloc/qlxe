@@ -4,11 +4,12 @@
  */
 package com.chl.controllers;
 
+import com.chl.Utils.Utils;
 import com.chl.pojo.Chuyenxe;
 import com.chl.pojo.Tuyenxe;
+import com.chl.pojo.Cart;
 import com.chl.service.ChuyenxeService;
 import com.chl.service.TuyenxeService;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -16,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,9 +35,11 @@ public class Homecontroller {
     private ChuyenxeService chuyenxeService;
 
     @ModelAttribute
-    public void commonAt(Model model, @RequestParam Map<String, String> params){
+    public void commonAt(Model model, @RequestParam Map<String, String> params, HttpSession sesion){
         List<Tuyenxe> tuyenxe = this.tuyenxeService.getTuyenxes();
         model.addAttribute("tx", tuyenxe);
+        
+        model.addAttribute("cartCouter", Utils.countCart((Map<Integer, Cart>) sesion.getAttribute("cart")));
     }  
     
     @RequestMapping(value = "/")
