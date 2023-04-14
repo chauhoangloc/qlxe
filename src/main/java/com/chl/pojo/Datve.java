@@ -6,6 +6,7 @@ package com.chl.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,11 +17,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,9 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Datve.findAll", query = "SELECT d FROM Datve d"),
     @NamedQuery(name = "Datve.findByIddatved", query = "SELECT d FROM Datve d WHERE d.iddatved = :iddatved"),
     @NamedQuery(name = "Datve.findByNgaydatve", query = "SELECT d FROM Datve d WHERE d.ngaydatve = :ngaydatve"),
-    @NamedQuery(name = "Datve.findBySoluongve", query = "SELECT d FROM Datve d WHERE d.soluongve = :soluongve"),
-    @NamedQuery(name = "Datve.findByThanhtoanOnl", query = "SELECT d FROM Datve d WHERE d.thanhtoanOnl = :thanhtoanOnl"),
-    @NamedQuery(name = "Datve.findByStatusThanhtoan", query = "SELECT d FROM Datve d WHERE d.statusThanhtoan = :statusThanhtoan")})
+    @NamedQuery(name = "Datve.findByTotal", query = "SELECT d FROM Datve d WHERE d.total = :total")})
 public class Datve implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,19 +47,13 @@ public class Datve implements Serializable {
     @Column(name = "ngaydatve")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ngaydatve;
-    @Column(name = "soluongve")
-    private Integer soluongve;
-    @Column(name = "thanhtoanOnl")
-    private Boolean thanhtoanOnl;
-    @Size(max = 20)
-    @Column(name = "statusThanhtoan")
-    private String statusThanhtoan;
+    @Column(name = "total")
+    private Integer total;
     @JoinColumn(name = "iduser", referencedColumnName = "iduser")
     @ManyToOne
     private Users iduser;
-    @JoinColumn(name = "idchuyenxe", referencedColumnName = "idchuyenxe")
-    @ManyToOne
-    private Chuyenxe idchuyenxe;
+    @OneToMany(mappedBy = "iddatved")
+    private Set<Ctdatve> ctdatveSet;
 
     public Datve() {
     }
@@ -84,28 +78,12 @@ public class Datve implements Serializable {
         this.ngaydatve = ngaydatve;
     }
 
-    public Integer getSoluongve() {
-        return soluongve;
+    public Integer getTotal() {
+        return total;
     }
 
-    public void setSoluongve(Integer soluongve) {
-        this.soluongve = soluongve;
-    }
-
-    public Boolean getThanhtoanOnl() {
-        return thanhtoanOnl;
-    }
-
-    public void setThanhtoanOnl(Boolean thanhtoanOnl) {
-        this.thanhtoanOnl = thanhtoanOnl;
-    }
-
-    public String getStatusThanhtoan() {
-        return statusThanhtoan;
-    }
-
-    public void setStatusThanhtoan(String statusThanhtoan) {
-        this.statusThanhtoan = statusThanhtoan;
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 
     public Users getIduser() {
@@ -116,12 +94,13 @@ public class Datve implements Serializable {
         this.iduser = iduser;
     }
 
-    public Chuyenxe getIdchuyenxe() {
-        return idchuyenxe;
+    @XmlTransient
+    public Set<Ctdatve> getCtdatveSet() {
+        return ctdatveSet;
     }
 
-    public void setIdchuyenxe(Chuyenxe idchuyenxe) {
-        this.idchuyenxe = idchuyenxe;
+    public void setCtdatveSet(Set<Ctdatve> ctdatveSet) {
+        this.ctdatveSet = ctdatveSet;
     }
 
     @Override

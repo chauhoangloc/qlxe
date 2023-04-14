@@ -4,6 +4,7 @@
  */
 package com.chl.repository;
 
+import com.chl.pojo.Cart;
 import com.chl.pojo.Chuyenxe;
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,5 @@ public interface ChuyenxeReposity {
     boolean AddOrUpdateCX(Chuyenxe cx);
     Chuyenxe getChuyenxeId(int id);
     boolean delCX(int id);
+   // boolean Receipt(Map<String,Cart> cart);
 }

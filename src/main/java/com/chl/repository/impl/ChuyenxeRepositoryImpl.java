@@ -4,8 +4,13 @@
  */
 package com.chl.repository.impl;
 
+import com.chl.pojo.Cart;
 import com.chl.pojo.Chuyenxe;
+import com.chl.pojo.Ctdatve;
+import com.chl.pojo.Datve;
+import com.chl.pojo.Datve_;
 import com.chl.repository.ChuyenxeReposity;
+import com.chl.repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +21,13 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.jboss.jandex.TypeTarget;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -34,6 +41,8 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private Environment env;
 
@@ -98,19 +107,22 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
         return Integer.parseInt(q.getSingleResult().toString());
     }
- @Override
+
+    @Override
     public Chuyenxe getChuyenxeId(int id) {
-         Session s = this.factory.getObject().getCurrentSession();
+        Session s = this.factory.getObject().getCurrentSession();
         return s.get(Chuyenxe.class, id);
     }
+
     @Override
     public boolean AddOrUpdateCX(Chuyenxe cx) {
         Session session = this.factory.getObject().getCurrentSession();
         try {
-            if (cx.getIdchuyenxe()> 0)
-               session.update(cx);
-            else
-                 session.save(cx);
+            if (cx.getIdchuyenxe() > 0) {
+                session.update(cx);
+            } else {
+                session.save(cx);
+            }
             return true;
         } catch (HibernateException ex) {
             return false;
@@ -122,11 +134,35 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
         Chuyenxe cx = this.getChuyenxeId(id);
         Session s = this.factory.getObject().getCurrentSession();
         try {
-            
+
             s.delete(cx);
             return true;
         } catch (HibernateException ex) {
             return false;
         }
     }
+
+    /*@Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public boolean Receipt(Map<String, Cart> cart) {
+        Session session = this.factory.getObject().getCurrentSession();
+
+        try {
+            Datve d = new Datve();
+            d.setIduser(userRepository.getUserByUsername("hoangloc"));
+            session.save(d);
+
+            for (Cart c : cart.values()) {
+                Ctdatve ct = new Ctdatve();
+                ct.setGia(c.getGiave().intValue());
+                ct.setSoluongve(c.getCount());
+                ct.setIddatved(d);
+                ct.setIdchuyenxe(this.getChuyenxeId(c.getIdchuyenxe()));
+                session.save(ct);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            return false;
+        }
+    }*/
 }

@@ -66,3 +66,19 @@ function deleteCart(idchuyenxe,tenchuyenxe){
     }
      location.reload();
 }
+
+/*function payment(endpoint) {
+    fetch("/qlxe/api/cart", {
+        method: "post"
+    }).then(res => {
+        console.info(res);
+        if (res.status === 200) {
+            let e = document.getElementById("content");
+            e.innerText = "Đơn hàng đã được ghi nhận";
+            
+            let counters = document.getElementsByClassName("cart-counter");
+            for (let d of counters)
+                d.innerText = 0;
+        } 
+    })
+}*/

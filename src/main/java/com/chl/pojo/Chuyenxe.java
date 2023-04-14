@@ -39,7 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
     @NamedQuery(name = "Chuyenxe.findByIdchuyenxe", query = "SELECT c FROM Chuyenxe c WHERE c.idchuyenxe = :idchuyenxe"),
     @NamedQuery(name = "Chuyenxe.findByTenchuyenxe", query = "SELECT c FROM Chuyenxe c WHERE c.tenchuyenxe = :tenchuyenxe"),
     @NamedQuery(name = "Chuyenxe.findByNgaydi", query = "SELECT c FROM Chuyenxe c WHERE c.ngaydi = :ngaydi"),
-    //@NamedQuery(name = "Chuyenxe.findByGiodi", query = "SELECT c FROM Chuyenxe c WHERE c.giodi = :giodi"),
+    @NamedQuery(name = "Chuyenxe.findByGiodi", query = "SELECT c FROM Chuyenxe c WHERE c.giodi = :giodi"),
     @NamedQuery(name = "Chuyenxe.findByGiave", query = "SELECT c FROM Chuyenxe c WHERE c.giave = :giave"),
     @NamedQuery(name = "Chuyenxe.findBySlve", query = "SELECT c FROM Chuyenxe c WHERE c.slve = :slve"),
     @NamedQuery(name = "Chuyenxe.findBySlvedaban", query = "SELECT c FROM Chuyenxe c WHERE c.slvedaban = :slvedaban"),
@@ -52,32 +52,32 @@ public class Chuyenxe implements Serializable {
     @Basic(optional = false)
     @Column(name = "idchuyenxe")
     private Integer idchuyenxe;
-    @Size(max = 100,message = "{chuyenxe.tenchuyenxe.nullerr}")
+    @Size(max = 100)
     @Column(name = "tenchuyenxe")
     private String tenchuyenxe;
     @Column(name = "ngaydi")
     @Temporal(TemporalType.DATE)
     private Date ngaydi;
-   // @Column(name = "giodi")
-    //@Temporal(TemporalType.TIME)
-   // private Date giodi;
+    @Column(name = "giodi")
+    @Temporal(TemporalType.TIME)
+    private Date giodi;
     @Column(name = "giave")
     private Integer giave;
     @Column(name = "slve")
     private Integer slve;
     @Column(name = "slvedaban")
     private Integer slvedaban;
-    @Size(max = 200)
+    @Size(max = 500)
     @Column(name = "hinhanh")
     private String hinhanh;
     @JoinColumn(name = "idTX", referencedColumnName = "idTX")
     @ManyToOne
     private Tuyenxe idTX;
     @OneToMany(mappedBy = "idchuyenxe")
-    private Set<Datve> datveSet;
-
+    private Set<Ctdatve> ctdatveSet;
     @Transient
     private MultipartFile file;
+
     public Chuyenxe() {
     }
 
@@ -109,13 +109,13 @@ public class Chuyenxe implements Serializable {
         this.ngaydi = ngaydi;
     }
 
-  //  public Date getGiodi() {
-   //     return giodi;
-  //  }
+    public Date getGiodi() {
+        return giodi;
+    }
 
-  //  public void setGiodi(Date giodi) {
-  //      this.giodi = giodi;
-   // }
+    public void setGiodi(Date giodi) {
+        this.giodi = giodi;
+    }
 
     public Integer getGiave() {
         return giave;
@@ -158,12 +158,12 @@ public class Chuyenxe implements Serializable {
     }
 
     @XmlTransient
-    public Set<Datve> getDatveSet() {
-        return datveSet;
+    public Set<Ctdatve> getCtdatveSet() {
+        return ctdatveSet;
     }
 
-    public void setDatveSet(Set<Datve> datveSet) {
-        this.datveSet = datveSet;
+    public void setCtdatveSet(Set<Ctdatve> ctdatveSet) {
+        this.ctdatveSet = ctdatveSet;
     }
 
     @Override
@@ -204,5 +204,5 @@ public class Chuyenxe implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-    
+
 }

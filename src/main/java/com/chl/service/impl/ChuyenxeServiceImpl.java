@@ -4,6 +4,7 @@
  */
 package com.chl.service.impl;
 
+import com.chl.pojo.Cart;
 import com.chl.pojo.Chuyenxe;
 import com.chl.repository.ChuyenxeReposity;
 import com.chl.service.ChuyenxeService;
@@ -63,4 +64,11 @@ public class ChuyenxeServiceImpl implements ChuyenxeService{
     public boolean delCX(int id) {
        return this.chuyenxerepository.delCX(id);
     }
+
+    /*@Override
+    public boolean Receipt(Map<String, Cart> cart) {
+        if(cart!=null)
+          return this.chuyenxerepository.Receipt(cart);
+        return false;
+    }*/
 }

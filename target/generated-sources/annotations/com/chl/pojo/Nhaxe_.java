@@ -10,7 +10,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-04-12T14:23:51")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-04-14T14:42:09")
 @StaticMetamodel(Nhaxe.class)
 public class Nhaxe_ { 
 

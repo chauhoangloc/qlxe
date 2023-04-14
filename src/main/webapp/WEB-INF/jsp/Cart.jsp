@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -23,23 +23,27 @@
                 <td>${d.tenchuyenxe}</td>
                 <td><fmt:formatNumber value="${d.giave}" maxFractionDigits="3" type = "number" /> VND</td>
                 <td>
-                       <input type="number" value="${d.count}" onblur="updateCart(this,${d.idchuyenxe})" class="form-control" />
+                    <input type="number" value="${d.count}" onblur="updateCart(this,${d.idchuyenxe})" class="form-control" />
 
                 </td>
                 <td>
                     <input type="button" value="Xóa"
-                           onclick="deleteCart(${d.idchuyenxe},'${d.tenchuyenxe}')" class="btn btn-danger"/>
+                           onclick="deleteCart(${d.idchuyenxe}, '${d.tenchuyenxe}')" class="btn btn-danger"/>
                 </td>
             </tr>
         </c:forEach>
     </table>
-     <div><p>Tổng tiền bạn cần thanh toán : <span id="amountCart"> <fmt:formatNumber value="${cartStats.amount}" maxFractionDigits="3" type = "number" />  </span>VNĐ</p></div>
-    <input type="button" value="Thanh toán" class="btn btn-danger"/>
+    <div><p>Tổng tiền bạn cần thanh toán : <span id="amountCart"> <fmt:formatNumber value="${cartStats.amount}" maxFractionDigits="3" type = "number" />  </span>VNĐ</p></div>
+    <div>   
+        <c:url value="/payment" var="urlpay"> </c:url>
+         <input type="button" value="Thanh toán" class="btn btn-success" />
+    </div>
+
 </c:if>
 <script>
-    window.onload = function() {
-        
+    window.onload = function () {
+
     }
 </script>
-   
+
 <script src="<c:url value="/resources/js/Cart.js" />"></script>
