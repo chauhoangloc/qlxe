@@ -7,7 +7,9 @@ com\chl\configs\TilesConfig.class
 com\chl\pojo\Chuyenxe_.class
 com\chl\configs\HibernateConfig.class
 com\chl\pojo\Danhgia_.class
+com\chl\pojo\Tuyenxe_.class
 com\chl\controllers\ApiChuyenXeController.class
+com\chl\pojo\Ctdatve_.class
 com\chl\pojo\Datve_.class
 com\chl\configs\WebApplicationContextConfig.class
 com\chl\pojo\Nhaxe_.class

@@ -65,10 +65,10 @@ public class ChuyenxeServiceImpl implements ChuyenxeService{
        return this.chuyenxerepository.delCX(id);
     }
 
-    /*@Override
+    @Override
     public boolean Receipt(Map<String, Cart> cart) {
         if(cart!=null)
           return this.chuyenxerepository.Receipt(cart);
         return false;
-    }*/
+    }
 }

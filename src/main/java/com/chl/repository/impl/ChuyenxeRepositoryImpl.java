@@ -142,7 +142,7 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
         }
     }
 
-    /*@Override
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public boolean Receipt(Map<String, Cart> cart) {
         Session session = this.factory.getObject().getCurrentSession();
@@ -164,5 +164,5 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
         } catch (HibernateException ex) {
             return false;
         }
-    }*/
+    }
 }

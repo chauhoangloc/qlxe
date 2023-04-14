@@ -42,7 +42,7 @@ function updateCart(obj,idchuyenxe){
     }).then(function(res){
         return res.json();
     }).then(function(data){ 
-        let counter = document.getElementById("cartCouter");
+        let counter = document.document.getElementsByClassName("cartCouter");
         counter.innerText = data.counter;                          //.counter gọi từ Utils
         let amount = document.getElementById("amountCart");
         amount.innerText = data.amount;
@@ -67,18 +67,19 @@ function deleteCart(idchuyenxe,tenchuyenxe){
      location.reload();
 }
 
-/*function payment(endpoint) {
-    fetch("/qlxe/api/cart", {
+function payment(endpoint) {
+    if(confirm(`Bạn có muốn đặt vé này không ! `)==true){
+    fetch(endpoint, {
         method: "post"
     }).then(res => {
         console.info(res);
         if (res.status === 200) {
             let e = document.getElementById("content");
             e.innerText = "Đơn hàng đã được ghi nhận";
-            
-            let counters = document.getElementsByClassName("cart-counter");
+            let counters = document.document.getElementsByClassName("cartCouter");
             for (let d of counters)
                 d.innerText = 0;
         } 
     })
-}*/
+}
+}

@@ -19,6 +19,6 @@ public interface ChuyenxeService {
    boolean AddOrUpdateCX(Chuyenxe cx);
    Chuyenxe getChuyenxeId(int id);
     boolean delCX(int id);
-  //  boolean Receipt(Map<String, Cart> cart);
+   boolean Receipt(Map<String, Cart> cart);
 }
  

@@ -35,8 +35,8 @@
     </table>
     <div><p>Tổng tiền bạn cần thanh toán : <span id="amountCart"> <fmt:formatNumber value="${cartStats.amount}" maxFractionDigits="3" type = "number" />  </span>VNĐ</p></div>
     <div>   
-        <c:url value="/payment" var="urlpay"> </c:url>
-         <input type="button" value="Thanh toán" class="btn btn-success" />
+     <c:url value="/api/payment" var="pUrl" />
+                <input type="button" onclick="payment('${pUrl}')" value="Thanh toán" class="btn btn-success" />
     </div>
 
 </c:if>

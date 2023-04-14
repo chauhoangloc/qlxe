@@ -72,12 +72,12 @@ public class CartAPIController {
         return new ResponseEntity<>(Utils.cartStats(cart), HttpStatus.OK);
     }
 
- /*   @PostMapping("/payment")
+    @PostMapping("/api/payment")
     public ResponseEntity payment(HttpSession session) {
-        if (this.chuyenxeService.Receipt((Map<String, Cart>) session.getAttribute("Cart")))
+        if (this.chuyenxeService.Receipt((Map<String, Cart>) session.getAttribute("cart")))
             return new ResponseEntity(HttpStatus.OK);
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
         
-        }*/
+        }
 }
 
