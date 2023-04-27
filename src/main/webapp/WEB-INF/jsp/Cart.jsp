@@ -23,12 +23,14 @@
                 <td>${d.tenchuyenxe}</td>
                 <td><fmt:formatNumber value="${d.giave}" maxFractionDigits="3" type = "number" /> VND</td>
                 <td>
-                    <input type="number" value="${d.count}" onblur="updateCart(this,${d.idchuyenxe})" class="form-control" />
+                    <c:url value="/api/cart" var="update" />
+                    <input type="number" value="${d.count}" onblur="updateCart('${update}',this,${d.idchuyenxe})" class="form-control" />
 
                 </td>
                 <td>
+                    <c:url value="/api/cart/${d.idchuyenxe}" var="del" />
                     <input type="button" value="Xóa"
-                           onclick="deleteCart(${d.idchuyenxe}, '${d.tenchuyenxe}')" class="btn btn-danger"/>
+                           onclick="deleteCart('${del}',${d.idchuyenxe}, '${d.tenchuyenxe}')" class="btn btn-danger"/>
                 </td>
             </tr>
         </c:forEach>

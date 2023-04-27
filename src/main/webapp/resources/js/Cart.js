@@ -27,8 +27,8 @@ function addToCart(endpoint,idchuyenxe,tenchuyenxe,giave){
 
 }
 
-function updateCart(obj,idchuyenxe){
-    fetch("/qlxe/api/cart",{
+function updateCart(update,obj,idchuyenxe){
+    fetch(update,{
         method : 'put',
         body : JSON.stringify({
             "idchuyenxe":idchuyenxe,
@@ -50,9 +50,9 @@ function updateCart(obj,idchuyenxe){
     })
      location.reload();
 }
-function deleteCart(idchuyenxe,tenchuyenxe){
+function deleteCart(del,idchuyenxe,tenchuyenxe){
     if(confirm(`Bạn có muốn xóa ${tenchuyenxe} hay không ! `)==true){
-    fetch(`/qlxe/api/cart/${idchuyenxe}`,{
+    fetch(del,{
         method : 'delete'
     }).then(function(res){
         return res.json();
