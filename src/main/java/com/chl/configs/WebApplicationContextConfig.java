@@ -65,7 +65,7 @@ public class WebApplicationContextConfig implements
         return resolver;
     }
 
-    @Bean
+    /*@Bean
     public Cloudinary cloudinary() {
         Cloudinary cloudinary
                 = new Cloudinary(ObjectUtils.asMap(
@@ -74,7 +74,7 @@ public class WebApplicationContextConfig implements
                         "api_secret", "NiLKDelE9KnOuQ12mupUvom61sk",
                         "secure", true));
         return cloudinary;
-    }
+    }*/
 
     @Override
     public void addFormatters(FormatterRegistry registry) {

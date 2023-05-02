@@ -40,7 +40,18 @@
      <c:url value="/api/payment" var="pUrl" />
                 <input type="button" onclick="payment('${pUrl}')" value="Thanh toán" class="btn btn-success" />
     </div>
-
+    <div>
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name == null}">
+                <c:url value="/login" var="loginUrl" />
+                <p>Vui lòng <a href="${loginUrl}">đăng nhập</a> để thanh toán!</p>
+            </c:when>
+            <c:when test="${pageContext.request.userPrincipal.name != null}">
+                <c:url value="/api/payment" var="pUrl" />
+                <input type="button" onclick="payment('${pUrl}')" value="Thanh toán" class="btn btn-success" />
+            </c:when>
+        </c:choose>
+    </div>
 </c:if>
 <script>
     window.onload = function () {

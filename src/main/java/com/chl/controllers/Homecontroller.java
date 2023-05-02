@@ -8,11 +8,14 @@ import com.chl.Utils.Utils;
 import com.chl.pojo.Chuyenxe;
 import com.chl.pojo.Tuyenxe;
 import com.chl.pojo.Cart;
+import com.chl.pojo.Users;
 import com.chl.service.ChuyenxeService;
 import com.chl.service.TuyenxeService;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import com.chl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @ControllerAdvice
 public class Homecontroller {
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private TuyenxeService tuyenxeService;
     @Autowired
@@ -46,7 +50,6 @@ public class Homecontroller {
     public String index(Model model, @RequestParam Map<String, String> params) {
         int page= Integer.parseInt(params.getOrDefault("page", "1"));
         List<Chuyenxe> chuyenxe = this.chuyenxeService.getChuyenXes(params, page);
-       
 
         model.addAttribute("countCX",this.chuyenxeService.count());
         model.addAttribute("cx",chuyenxe);

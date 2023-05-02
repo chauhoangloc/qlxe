@@ -57,7 +57,7 @@ public class Users implements Serializable {
     @Column(name = "avatar")
     private String avatar;
     @Column(name = "role")
-    private Integer role;
+    private String role;
     @OneToMany(mappedBy = "iduser")
     private Set<Datve> datveSet;
     @OneToMany(mappedBy = "iduser")
@@ -112,11 +112,11 @@ public class Users implements Serializable {
         this.avatar = avatar;
     }
 
-    public Integer getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Integer role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

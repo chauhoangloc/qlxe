@@ -16,6 +16,8 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  *
  * @author NC
@@ -39,4 +41,6 @@ public class UserRepositoryImpl implements UserRepository {
         Query query = s.createQuery(q);
         return (Users) query.getSingleResult();
     }
+
+
 }

@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -149,7 +150,7 @@ public class ChuyenxeRepositoryImpl implements ChuyenxeReposity {
 
         try {
             Datve d = new Datve();
-            d.setIduser(userRepository.getUserByUsername("hoangloc"));
+            d.setIduser(userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
             session.save(d);
 
             for (Cart c : cart.values()) {

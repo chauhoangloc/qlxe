@@ -4,7 +4,10 @@
  */
 package com.chl.repository;
 
+import com.chl.pojo.Tuyenxe;
 import com.chl.pojo.Users;
+
+import java.util.List;
 
 /**
  *
@@ -12,4 +15,5 @@ import com.chl.pojo.Users;
  */
 public interface UserRepository {
        Users getUserByUsername(String username);
+
 }

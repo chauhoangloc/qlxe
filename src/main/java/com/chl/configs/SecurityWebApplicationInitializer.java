@@ -1,2 +1,6 @@
-package com.chl.configs;public class SecurityWebApplicationInitializer {
+package com.chl.configs;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
+
 }

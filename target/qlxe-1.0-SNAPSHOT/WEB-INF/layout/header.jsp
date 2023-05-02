@@ -45,6 +45,26 @@
                                 
                             </a>
                         </ul>
+                    <c:choose>
+                        <c:when test="${pageContext.request.userPrincipal.name == null}">
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" href="<c:url value="/login" />">Đăng nhập</a>
+                            </li>
+                        </c:when>
+                        <c:when test="${pageContext.request.userPrincipal.name != null}">
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" href="<c:url value="/" />">Chào ${pageContext.request.userPrincipal.name}!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-success" href="<c:url value="/logout" />">Đăng xuất</a>
+                            </li>
+                        </c:when>
+                    </c:choose>
+                    <se:authorize ="hasRole('1')">
+                        <li class="nav-item">
+                            <a class="btn btn-danger" href="<c:url value="/admin/chuyenxe" />">Quản lý sản phẩm</a>
+                        </li>
+                    </se:authorize>
                     <input class="form-control me-2" name="kw" type="text" placeholder="Search......">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>

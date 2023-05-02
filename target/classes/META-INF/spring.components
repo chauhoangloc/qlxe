@@ -1,4 +1,5 @@
 com.chl.configs.HibernateConfig=org.springframework.stereotype.Component
+com.chl.configs.SpringSecurityConfig=org.springframework.stereotype.Component
 com.chl.configs.TilesConfig=org.springframework.stereotype.Component
 com.chl.configs.WebApplicationContextConfig=org.springframework.stereotype.Component
 com.chl.controllers.AdminController=org.springframework.stereotype.Component
@@ -29,3 +30,4 @@ com.chl.repository.impl.TuyenxeRepositoryImpl=org.springframework.stereotype.Com
 com.chl.repository.impl.UserRepositoryImpl=org.springframework.stereotype.Component
 com.chl.service.impl.ChuyenxeServiceImpl=org.springframework.stereotype.Component
 com.chl.service.impl.TuyenxeServiceImpl=org.springframework.stereotype.Component
+com.chl.service.impl.UserServiceImpl=org.springframework.stereotype.Component
